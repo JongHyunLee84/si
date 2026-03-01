@@ -1,0 +1,65 @@
+{
+  "projectName": "",
+  "createdAt": "",
+  "updatedAt": "",
+  "currentPhase": "research",
+  "phases": {
+    "research": {
+      "status": "pending",
+      "artifacts": [],
+      "gate": false,
+      "gateApproved": false,
+      "completedAt": null
+    },
+    "prd": {
+      "status": "pending",
+      "artifacts": [],
+      "gate": true,
+      "gateApproved": false,
+      "completedAt": null
+    },
+    "analysis": {
+      "status": "pending",
+      "artifacts": [],
+      "gate": false,
+      "gateApproved": false,
+      "completedAt": null
+    },
+    "architect": {
+      "status": "pending",
+      "artifacts": [],
+      "gate": true,
+      "gateApproved": false,
+      "completedAt": null
+    },
+    "tdd": {
+      "status": "pending",
+      "artifacts": [],
+      "gate": false,
+      "gateApproved": false,
+      "completedAt": null
+    },
+    "develop": {
+      "status": "pending",
+      "artifacts": [],
+      "gate": false,
+      "gateApproved": false,
+      "completedAt": null
+    },
+    "e2e": {
+      "status": "pending",
+      "artifacts": [],
+      "gate": false,
+      "gateApproved": false,
+      "completedAt": null
+    },
+    "acceptance": {
+      "status": "pending",
+      "artifacts": [],
+      "gate": false,
+      "gateApproved": false,
+      "completedAt": null
+    }
+  },
+  "notes": ""
+}

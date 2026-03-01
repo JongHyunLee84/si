@@ -1,0 +1,8 @@
+{
+  "name": "si",
+  "description": "SI 스타일 소프트웨어 개발 워크플로우 — Research → PRD → Analysis → Architect → TDD → Develop → E2E → Acceptance",
+  "version": "0.1.0",
+  "author": {
+    "name": "jhlee"
+  }
+}

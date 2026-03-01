@@ -1,0 +1,42 @@
+#!/bin/bash
+# SI Workflow SessionStart Hook
+# Detects tasks/si-progress.json in the current project and loads phase state.
+
+PROGRESS_FILE="tasks/si-progress.json"
+
+# Check if si-progress.json exists in the working directory
+if [ ! -f "$PROGRESS_FILE" ]; then
+  exit 0
+fi
+
+# Read and validate JSON
+if ! python3 -c "import json, sys; json.load(open(sys.argv[1]))" "$PROGRESS_FILE" 2>/dev/null; then
+  echo '{"additional_context": "[SI] Warning: tasks/si-progress.json exists but contains invalid JSON."}'
+  exit 0
+fi
+
+# Extract key fields for context
+CURRENT_PHASE=$(python3 -c "
+import json, sys
+data = json.load(open(sys.argv[1]))
+print(data.get('currentPhase', 'unknown'))
+" "$PROGRESS_FILE")
+
+COMPLETED=$(python3 -c "
+import json, sys
+data = json.load(open(sys.argv[1]))
+phases = data.get('phases', {})
+done = [k for k, v in phases.items() if v.get('status') == 'completed']
+print(', '.join(done) if done else 'none')
+" "$PROGRESS_FILE")
+
+PROJECT_NAME=$(python3 -c "
+import json, sys
+data = json.load(open(sys.argv[1]))
+print(data.get('projectName', 'unknown'))
+" "$PROGRESS_FILE")
+
+# Build context message
+CONTEXT="[SI Workflow Active] Project: ${PROJECT_NAME} | Current Phase: ${CURRENT_PHASE} | Completed: ${COMPLETED}. Use /si:start to continue or any /si:<phase> command to jump to a specific phase."
+
+echo "{\"additional_context\": \"${CONTEXT}\"}"
