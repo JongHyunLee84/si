@@ -1,0 +1,17 @@
+{
+  "name": "si",
+  "owner": {
+    "name": "jhlee"
+  },
+  "metadata": {
+    "description": "SI 스타일 소프트웨어 개발 워크플로우 플러그인"
+  },
+  "plugins": [
+    {
+      "name": "si",
+      "source": "./",
+      "description": "SI 워크플로우 — Research → PRD → Analysis → Architect → TDD → Develop → E2E → Acceptance",
+      "version": "0.1.0"
+    }
+  ]
+}

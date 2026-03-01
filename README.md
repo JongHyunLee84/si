@@ -11,7 +11,33 @@ Research → PRD → Analysis → Architect → TDD → Develop → E2E → Acce
 ## 설치
 
 ```bash
-claude plugins add ~/Documents/si
+# 마켓플레이스 등록 (최초 1회)
+claude plugin marketplace add JongHyunLee84/si
+
+# 설치
+claude plugin install si
+```
+
+## 프로젝트 구조
+
+```
+si/
+├── .claude-plugin/
+│   ├── plugin.json       # 플러그인 매니페스트
+│   └── marketplace.json  # 마켓플레이스 인덱스
+├── commands/             # 슬래시 커맨드 (사용자 진입점)
+├── skills/               # 내부 스킬 (커맨드가 호출)
+│   ├── deep-research/
+│   │   ├── SKILL.md
+│   │   └── references/
+│   ├── prd/
+│   ├── tdd/
+│   └── code-review/
+├── settings/
+│   ├── rules/
+│   └── templates/
+├── hooks/
+└── README.md
 ```
 
 ## 커맨드
@@ -28,6 +54,15 @@ claude plugins add ~/Documents/si
 | `/si:e2e` | 7 | E2E 테스트 |
 | `/si:acceptance` | 8 | 준수율 채점 + 최종 검증 |
 | `/si:save` | - | 진행 상태 저장 |
+
+## 스킬
+
+| Skill | 연결 커맨드 | 역할 |
+|-------|-----------|------|
+| `si:deep-research` | `/si:research` | 체계적 리서치 (폴백 체인, 병렬 수집) |
+| `si:prd` | `/si:prd` | 인터뷰 기반 PRD (AskUserQuestion 강제) |
+| `si:tdd` | `/si:tdd` | R-G-R + AC 트래킹 |
+| `si:code-review` | `/si:acceptance` | 정량 채점 + severity 분류 |
 
 ## 게이트 (사용자 승인 필요)
 
