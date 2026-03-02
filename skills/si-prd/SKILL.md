@@ -1,5 +1,5 @@
 ---
-name: si:prd
+name: si-prd
 user-invocable: true
 description: "인터뷰 기반 PRD — interview-then-plan 인터뷰 프로토콜 + product-manager PRD 구조 결합"
 ---
@@ -221,7 +221,7 @@ As a [role], I want to [action], so that [benefit].
 
 ### 3.3 EARS Format (Mandatory)
 
-모든 요구사항(FR, NFR)은 반드시 EARS 패턴을 사용. Reference: `${CLAUDE_PLUGIN_ROOT}/settings/rules/ears-format.md`
+모든 요구사항(FR, NFR)은 반드시 EARS 패턴을 사용. Reference: `settings/rules/ears-format.md`
 
 5가지 패턴:
 1. **Ubiquitous**: "The [system] shall [action]."

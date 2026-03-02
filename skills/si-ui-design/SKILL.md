@@ -1,5 +1,5 @@
 ---
-name: si:ui-design
+name: si-ui-design
 user-invocable: true
 description: "SI UI/UX 디자인 특화 — Pencil MCP 활용, HTML 프로토타입 폴백, 디자인-코드 매핑"
 compatibility:

@@ -1,5 +1,5 @@
 ---
-name: si:tdd
+name: si-tdd
 user-invocable: true
 description: "SI 수용 기준 특화 TDD — Given/When/Then에서 테스트 플랜 자동 추출, AC별 R-G-R 사이클 트래킹"
 ---
@@ -57,7 +57,7 @@ NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 **Test Type Selection:**
 - 순수 로직, 데이터 변환 → **Unit test**
 - DB, API, 파일 I/O → **Integration test**
-- 전체 사용자 흐름 → **E2E** (/si:8-e2e phase로 연기)
+- 전체 사용자 흐름 → **E2E** (si-8-e2e phase로 연기)
 
 ---
 

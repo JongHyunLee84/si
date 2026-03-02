@@ -1,5 +1,5 @@
 ---
-name: si:code-review
+name: si-code-review
 user-invocable: true
 description: "SI 정량 채점 특화 코드 리뷰 — 수용 기준 대조 매트릭스, 90/70/fail 판정, severity 분류"
 ---

@@ -1,5 +1,5 @@
 ---
-name: si:deep-research
+name: si-deep-research
 user-invocable: true
 description: "SI 리서치 특화 deep-research — 스코프 정의 질문 통합, SI 템플릿 출력, 도구 폴백 체인 유지"
 compatibility:
