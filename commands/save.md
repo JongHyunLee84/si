@@ -1,7 +1,7 @@
 ---
-name: save
+name: si:save
 description: 현재 SI 워크플로우 진행 상태를 명시적으로 저장
-user_invocable: true
+user-invocable: true
 ---
 
 # SI Save

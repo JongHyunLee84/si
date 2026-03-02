@@ -57,7 +57,7 @@ NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 **Test Type Selection:**
 - 순수 로직, 데이터 변환 → **Unit test**
 - DB, API, 파일 I/O → **Integration test**
-- 전체 사용자 흐름 → **E2E** (/si:e2e phase로 연기)
+- 전체 사용자 흐름 → **E2E** (/si:8-e2e phase로 연기)
 
 ---
 

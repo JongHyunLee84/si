@@ -1,7 +1,7 @@
 ---
-name: analysis
+name: si:3-analysis
 description: 기존 코드/시스템 분석, 갭 분석, 구현 접근법 평가 (cc-sdd + shinpr 패턴)
-user_invocable: true
+user-invocable: true
 ---
 
 # SI Analysis Phase

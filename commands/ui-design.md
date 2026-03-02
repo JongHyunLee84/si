@@ -1,7 +1,7 @@
 ---
-name: ui-design
+name: si:5-ui-design
 description: UI/UX 디자인 — 화면 레이아웃, 인터랙션, 디자인 시스템 정의
-user_invocable: true
+user-invocable: true
 ---
 
 # SI UI Design Phase

@@ -1,7 +1,7 @@
 ---
-name: start
+name: si:start
 description: SI 워크플로우 오케스트레이터 — Phase 추적, 게이트 체크, 라우팅
-user_invocable: true
+user-invocable: true
 ---
 
 # SI Workflow Orchestrator
@@ -29,15 +29,15 @@ Next gate: [phase with gate=true that hasn't been approved]
 
 | Phase | Action |
 |-------|--------|
-| research | "Run `/si:research` to begin market/tech research." |
-| prd | "Run `/si:prd` to define requirements." |
-| analysis | "Run `/si:analysis` to analyze the codebase and evaluate approaches." |
-| architect | "Run `/si:architect` to create the technical design." |
-| ui-design | "Run `/si:ui-design` to create the UI/UX design." |
-| tdd | "Run `/si:tdd` to start test-driven development." |
-| develop | "Run `/si:develop` for implementation guidance." |
-| e2e | "Run `/si:e2e` to run end-to-end tests." |
-| acceptance | "Run `/si:acceptance` for final verification." |
+| research | "Run `/si:1-research` to begin market/tech research." |
+| prd | "Run `/si:2-prd` to define requirements." |
+| analysis | "Run `/si:3-analysis` to analyze the codebase and evaluate approaches." |
+| architect | "Run `/si:4-architect` to create the technical design." |
+| ui-design | "Run `/si:5-ui-design` to create the UI/UX design." |
+| tdd | "Run `/si:6-tdd` to start test-driven development." |
+| develop | "Run `/si:7-develop` for implementation guidance." |
+| e2e | "Run `/si:8-e2e` to run end-to-end tests." |
+| acceptance | "Run `/si:9-acceptance` for final verification." |
 
 ## Gate Checks (User Approval Required)
 

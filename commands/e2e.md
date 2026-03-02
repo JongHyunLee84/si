@@ -1,7 +1,7 @@
 ---
-name: e2e
+name: si:8-e2e
 description: E2E 테스트 실행 — 수용 기준 기반 통합 테스트 검증
-user_invocable: true
+user-invocable: true
 ---
 
 # SI E2E Phase
@@ -62,7 +62,7 @@ For each failing test:
 | AC-NNN | [what failed] | Implementation Bug / Design Gap / Test Error | [fix action] |
 
 - **Implementation Bug** → Fix in code, re-run
-- **Design Gap** → Note for /si:acceptance, may need design revision
+- **Design Gap** → Note for /si:9-acceptance, may need design revision
 - **Test Error** → Fix the test, re-run
 
 ### Step 4: Regression Check

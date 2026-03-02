@@ -1,7 +1,7 @@
 ---
-name: develop
+name: si:7-develop
 description: 구현 가이드 — 에스컬레이션 체크, 중복 판정, 품질 기준 적용
-user_invocable: true
+user-invocable: true
 ---
 
 # SI Develop Phase
@@ -64,7 +64,7 @@ For each component:
 1. **Confirm interface** — matches `tasks/design.md` typed signatures
 2. **Follow conventions** — from `tasks/analysis.md` conventions section
 3. **Error handling** — matches `tasks/design.md` error table
-4. **Tests exist** — from TDD phase (if running after /si:tdd)
+4. **Tests exist** — from TDD phase (if running after /si:6-tdd)
 
 ### Step 4: Quality Checks (Continuous)
 
@@ -93,7 +93,7 @@ If changes exceeded expected scope → document why in `tasks/si-progress.json` 
 If during implementation you discover:
 - A needed refactoring → log as TODO, don't fix now (unless blocking)
 - A missing requirement → log in `tasks/requirements.md` Open Questions
-- A design flaw → STOP, note the issue, suggest returning to /si:architect
+- A design flaw → STOP, note the issue, suggest returning to /si:4-architect
 - An unrelated bug → log as separate issue, don't fix in this flow
 
 ## Output

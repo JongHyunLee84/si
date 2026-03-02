@@ -48,26 +48,26 @@ si/
 | Command | Phase | Description |
 |---------|-------|-------------|
 | `/si:start` | - | 오케스트레이터: Phase 추적, 게이트, 라우팅 |
-| `/si:research` | 1 | 시장/기술 리서치 |
-| `/si:prd` | 2 | 인터뷰 기반 요구사항 정의 |
-| `/si:analysis` | 3 | 코드/시스템 분석, 갭 분석 |
-| `/si:architect` | 4 | 기술 설계, ADR, 수용 기준 |
-| `/si:ui-design` | 5 | UI/UX 디자인, 화면 레이아웃, 디자인 시스템 |
-| `/si:tdd` | 6 | Red-Green-Refactor 사이클 |
-| `/si:develop` | 7 | 구현 가이드 |
-| `/si:e2e` | 8 | E2E 테스트 |
-| `/si:acceptance` | 9 | 준수율 채점 + 최종 검증 |
+| `/si:1-research` | 1 | 시장/기술 리서치 |
+| `/si:2-prd` | 2 | 인터뷰 기반 요구사항 정의 |
+| `/si:3-analysis` | 3 | 코드/시스템 분석, 갭 분석 |
+| `/si:4-architect` | 4 | 기술 설계, ADR, 수용 기준 |
+| `/si:5-ui-design` | 5 | UI/UX 디자인, 화면 레이아웃, 디자인 시스템 |
+| `/si:6-tdd` | 6 | Red-Green-Refactor 사이클 |
+| `/si:7-develop` | 7 | 구현 가이드 |
+| `/si:8-e2e` | 8 | E2E 테스트 |
+| `/si:9-acceptance` | 9 | 준수율 채점 + 최종 검증 |
 | `/si:save` | - | 진행 상태 저장 |
 
 ## 스킬
 
 | Skill | 연결 커맨드 | 역할 |
 |-------|-----------|------|
-| `si:deep-research` | `/si:research` | 체계적 리서치 (폴백 체인, 병렬 수집) |
-| `si:prd` | `/si:prd` | 인터뷰 기반 PRD (AskUserQuestion 강제) |
-| `si:ui-design` | `/si:ui-design` | Pencil MCP 활용 UI 디자인 + HTML 프로토타입 폴백 |
-| `si:tdd` | `/si:tdd` | R-G-R + AC 트래킹 |
-| `si:code-review` | `/si:acceptance` | 정량 채점 + severity 분류 |
+| `si:deep-research` | `/si:1-research` | 체계적 리서치 (폴백 체인, 병렬 수집) |
+| `si:prd` | `/si:2-prd` | 인터뷰 기반 PRD (AskUserQuestion 강제) |
+| `si:ui-design` | `/si:5-ui-design` | Pencil MCP 활용 UI 디자인 + HTML 프로토타입 폴백 |
+| `si:tdd` | `/si:6-tdd` | R-G-R + AC 트래킹 |
+| `si:code-review` | `/si:9-acceptance` | 정량 채점 + severity 분류 |
 
 ## 게이트 (사용자 승인 필요)
 

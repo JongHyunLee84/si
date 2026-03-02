@@ -1,7 +1,7 @@
 ---
-name: architect
+name: si:4-architect
 description: 기술 설계, ADR, 수용 기준 정의 (cc-sdd + shinpr + ATDD 패턴)
-user_invocable: true
+user-invocable: true
 ---
 
 # SI Architect Phase

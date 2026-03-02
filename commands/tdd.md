@@ -1,7 +1,7 @@
 ---
-name: tdd
+name: si:6-tdd
 description: 테스트 주도 개발 — Red → Green → Refactor + 수용 테스트 통합
-user_invocable: true
+user-invocable: true
 ---
 
 # SI TDD Phase
