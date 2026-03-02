@@ -1,5 +1,6 @@
 ---
 name: si:tdd
+user-invocable: true
 description: "SI 수용 기준 특화 TDD — Given/When/Then에서 테스트 플랜 자동 추출, AC별 R-G-R 사이클 트래킹"
 ---
 

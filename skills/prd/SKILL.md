@@ -1,5 +1,6 @@
 ---
 name: si:prd
+user-invocable: true
 description: "인터뷰 기반 PRD — interview-then-plan 인터뷰 프로토콜 + product-manager PRD 구조 결합"
 ---
 
