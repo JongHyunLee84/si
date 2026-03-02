@@ -1,0 +1,51 @@
+{
+  "skill_name": "deep-research",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "https://docs.astro.build/en/getting-started/ Astro 프레임워크 우리 블로그에 쓸만한지 검토해줘. SSG랑 SSR 둘 다 되는지, React 컴포넌트 쓸 수 있는지 궁금해",
+      "expected_output": "Astro의 SSG/SSR 지원 여부, React 통합(Islands Architecture), 성능 특성, 제약사항을 다양한 문서 페이지(guides, integrations, concepts, reference)를 탐색하여 종합 분석한 보고서",
+      "files": [],
+      "expectations": [
+        "10개 이상의 서로 다른 URL을 실제로 탐색했음 (Pages explored 섹션에 나열)",
+        "SSG와 SSR 모두 지원됨을 구체적으로 설명 (hybrid rendering 언급)",
+        "React 통합 방법을 구체적으로 설명 (Islands Architecture 또는 @astrojs/react 언급)",
+        "getting-started 외에 guides, integrations, concepts 등 다양한 섹션의 페이지를 탐색",
+        "제약사항이나 주의점을 최소 2개 이상 언급",
+        "블로그 용도에 적합한지에 대한 구체적 의견 제시 (단순 '좋다/나쁘다'가 아닌 근거 포함)",
+        "병렬 페칭을 시도함 (bulk fetch, batch scrape, 또는 parallel Agent 사용)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "https://docs.exa.ai/reference/search 이 API 우리 프로젝트에서 쓸 수 있을지 검토해줘. 검색이랑 크롤링 기능이 필요해",
+      "expected_output": "Exa API의 검색/크롤링 기능, 인증방식, rate limits, pricing, SDK 지원을 API reference 외의 페이지까지 탐색하여 분석한 보고서",
+      "files": [],
+      "expectations": [
+        "8개 이상의 서로 다른 URL을 탐색 (reference 페이지만이 아닌 다양한 페이지)",
+        "검색 API와 크롤링/콘텐츠 추출 API 모두 설명",
+        "인증 방식 (API key) 설명",
+        "pricing 또는 rate limits 정보를 찾아서 보고 (못 찾았으면 그 사실을 명시)",
+        "SDK 지원 여부 확인 (Python, JS 등)",
+        "API reference 외에 overview, guides, pricing 등 다른 섹션도 탐색 시도",
+        "프로젝트에서 사용 가능 여부에 대한 구체적 판단 제시"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Firecrawl이랑 Scrapling 중에 뭐가 나을까? 봇 차단 우회가 중요해",
+      "expected_output": "Firecrawl과 Scrapling 양쪽의 공식 문서/GitHub를 모두 탐색하여 봇 차단 우회 능력 중심으로 비교 분석한 보고서 (비교표 포함)",
+      "files": [],
+      "expectations": [
+        "Firecrawl 관련 페이지를 5개 이상 탐색",
+        "Scrapling 관련 페이지를 5개 이상 탐색",
+        "봇 차단 우회 메커니즘을 양쪽 모두 구체적으로 설명",
+        "비교표 또는 구조화된 비교 섹션 포함",
+        "pricing/비용 비교 포함",
+        "각각의 장단점을 균형있게 제시 (한쪽 편향 없음)",
+        "봇 차단 우회가 중요하다는 사용자 요구에 맞춘 최종 추천 제시",
+        "양쪽 문서를 병렬로 탐색 시도"
+      ]
+    }
+  ]
+}
