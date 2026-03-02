@@ -36,7 +36,9 @@ data = json.load(open(sys.argv[1]))
 print(data.get('projectName', 'unknown'))
 " "$PROGRESS_FILE")
 
-# Build context message
-CONTEXT="[SI Workflow Active] Project: ${PROJECT_NAME} | Current Phase: ${CURRENT_PHASE} | Completed: ${COMPLETED}. Use /si:start to continue or any /si:<phase> command to jump to a specific phase."
-
-echo "{\"additional_context\": \"${CONTEXT}\"}"
+# Build context message and output as safely escaped JSON
+SI_PROJECT_NAME="$PROJECT_NAME" SI_CURRENT_PHASE="$CURRENT_PHASE" SI_COMPLETED="$COMPLETED" python3 -c "
+import json, os
+context = f'[SI Workflow Active] Project: {os.environ[\"SI_PROJECT_NAME\"]} | Current Phase: {os.environ[\"SI_CURRENT_PHASE\"]} | Completed: {os.environ[\"SI_COMPLETED\"]}. Use /si:start to continue or any /si:<phase> command to jump to a specific phase.'
+print(json.dumps({'additional_context': context}))
+" 2>/dev/null || echo '{"additional_context": "[SI] Warning: failed to build context message."}'
