@@ -46,6 +46,11 @@ After the skill completes, verify:
 - `.pen` file or HTML prototype exists as design artifact
 - Design-to-Code Mapping references `tasks/design.md` §6 components
 
+### Sub-reports (Optional)
+중간 산출물이나 상세 분석이 있으면 `tasks/ui-design/`에 개별 파일로 저장.
+최종 통합 파일은 `tasks/ui-design.md`에 작성.
+서브리포트 경로는 `tasks/si-progress.json`의 `artifacts` 배열에 추가.
+
 ### Step 3: Update Progress
 
 Update `tasks/si-progress.json`:

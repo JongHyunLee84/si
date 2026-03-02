@@ -40,7 +40,26 @@ Run `/si-start` to begin or resume.
 4. UI Design 완료 후 — UI 디자인 승인
 
 ## Artifacts
+
 All outputs → `tasks/` directory. State → `tasks/si-progress.json`.
+
+### Sub-reports
+각 Phase의 중간 산출물은 `tasks/<phase>/`에 개별 파일로 저장:
+
+```
+tasks/
+  research/       # 토픽별 리서치
+  prd/            # 인터뷰 노트
+  analysis/       # 상세 분석
+  architect/      # 기술 리서치 버퍼, spike
+  ui-design/      # 스크린별 상세
+  tdd/            # 테스트 계획 상세
+  develop/        # 구현 노트
+  e2e/            # 시나리오별 결과
+  acceptance/     # 리뷰 상세
+```
+
+최종 통합 파일은 `tasks/<name>.md`에 유지 (하위 호환).
 
 ## Settings
 - `settings/rules/` — EARS format, gap analysis framework, design review checklist

@@ -69,3 +69,5 @@ AGENTS.md  → Codex/Cursor/Copilot 진입점
 | `tasks/si-progress.json` | 모든 워크플로우 스킬 + session-start hook (가장 영향 큼) |
 | `tasks/design.md` | 6개 워크플로우 스킬 + 3개 능력 스킬 |
 | `tasks/requirements.md` | 5개 워크플로우 스킬 + 2개 능력 스킬 |
+| `tasks/<phase>/` | 해당 phase 스킬 + 다운스트림 phase (서브리포트 참조) |
+| `tasks/architect/research.md` | si-4-architect 내부 (기존 `tasks/research.md` 대체) |

@@ -115,3 +115,26 @@ If a phase command fails or produces incomplete results:
   "notes": [{"phase": "string", "content": "string", "timestamp": "ISO 8601"}]
 }
 ```
+
+### Sub-report Convention
+
+각 Phase는 중간 산출물을 `tasks/<phase>/`에 저장할 수 있다:
+
+```
+tasks/
+  research/       # 토픽별 개별 리서치 서브리포트
+  prd/            # 페르소나 상세, 인터뷰 노트 등
+  analysis/       # 옵션별 상세 분석, 코드 서베이 결과
+  architect/      # 기술 리서치 버퍼, ADR 상세, spike 결과
+  ui-design/      # 스크린별 상세, 컴포넌트 인벤토리
+  tdd/            # AC별 테스트 계획 상세
+  develop/        # 컴포넌트별 구현 노트
+  e2e/            # 시나리오별 테스트 결과
+  acceptance/     # 카테고리별 리뷰 상세
+```
+
+**원칙**:
+- 최종 통합 파일 → `tasks/<name>.md` (경로 변경 없음)
+- 중간/상세 서브리포트 → `tasks/<phase>/`
+- 서브디렉토리는 필요할 때만 생성 (빈 디렉토리 미생성)
+- 서브리포트 경로는 해당 phase의 `artifacts` 배열에 추가

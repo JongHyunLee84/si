@@ -19,7 +19,8 @@ NEVER use these words in analysis output:
 Read these files BEFORE any analysis (Read-first principle):
 1. `tasks/requirements.md` (from PRD phase)
 2. `tasks/research-report.md` (from Research phase, if exists)
-3. `tasks/si-progress.json`
+3. `tasks/research/` (topic sub-reports, if exist)
+4. `tasks/si-progress.json`
 
 ## Execution Flow
 
@@ -114,6 +115,11 @@ For each new component, score against existing code:
 ## Output
 
 Write to `tasks/analysis.md` using template from `settings/templates/analysis.md`.
+
+### Sub-reports (Optional)
+중간 산출물이나 상세 분석이 있으면 `tasks/analysis/`에 개별 파일로 저장.
+최종 통합 파일은 `tasks/analysis.md`에 작성.
+서브리포트 경로는 `tasks/si-progress.json`의 `artifacts` 배열에 추가.
 
 Also update `tasks/si-progress.json` `phases.analysis.data` with:
 ```json

@@ -58,6 +58,11 @@ Run the full test suite and report:
 - Failing: N (list each with file:line)
 - New tests added this phase: N
 
+### Sub-reports (Optional)
+중간 산출물이나 상세 분석이 있으면 `tasks/tdd/`에 개별 파일로 저장.
+최종 통합 파일은 테스트 파일 자체.
+서브리포트 경로는 `tasks/si-progress.json`의 `artifacts` 배열에 추가.
+
 ## Update Progress
 
 Update `tasks/si-progress.json`:

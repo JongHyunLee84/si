@@ -59,6 +59,11 @@ If NEEDS IMPROVEMENT or REDESIGN:
   - **NEEDS IMPROVEMENT (70-89%)**: `/si-7-develop` → 구현 갭 수정 후 `/si-8-e2e` 재실행
   - **REDESIGN (<70%)**: `/si-4-architect` → 설계 재검토부터 다시 진행
 
+### Sub-reports (Optional)
+중간 산출물이나 상세 분석이 있으면 `tasks/acceptance/`에 개별 파일로 저장.
+최종 통합 파일은 `tasks/acceptance-report.md`에 작성.
+서브리포트 경로는 `tasks/si-progress.json`의 `artifacts` 배열에 추가.
+
 ### Step 4: Update Progress
 
 Update `tasks/si-progress.json`:

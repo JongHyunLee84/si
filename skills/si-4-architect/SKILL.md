@@ -34,13 +34,13 @@ Use WebSearch/WebFetch to investigate:
 - External dependency API signatures, rate limits, version compatibility
 - Similar implementations in established projects
 
-**IMPORTANT**: Write all research to `tasks/research.md` (research buffer).
+**IMPORTANT**: Write all research to `tasks/architect/research.md` (research buffer).
 `tasks/design.md` contains ONLY decisions, not research notes.
 
 If research is needed:
-1. Create `tasks/research.md` (or append if exists)
+1. Create `tasks/architect/research.md` (or append if exists)
 2. Format: `## [Topic]` → findings → sources
-3. Add `tasks/research.md` to `phases.architect.artifacts` if created
+3. Add `tasks/architect/research.md` to `phases.architect.artifacts` if created
 
 ### Step 3: Design Document
 
@@ -134,14 +134,19 @@ If any check fails, fix it before presenting.
 ## Output
 
 - `tasks/design.md` — design document (decisions only)
-- `tasks/research.md` — research buffer (investigation notes)
+- `tasks/architect/research.md` — research buffer (investigation notes)
 - ADR in design.md section 11 (if triggered)
+
+### Sub-reports (Optional)
+중간 산출물이나 상세 분석이 있으면 `tasks/architect/`에 개별 파일로 저장.
+최종 통합 파일은 `tasks/design.md`에 작성.
+서브리포트 경로는 `tasks/si-progress.json`의 `artifacts` 배열에 추가.
 
 ## Update Progress
 
 Update `tasks/si-progress.json`:
 - Set `phases.architect.status = "completed"`
-- Add `tasks/design.md` (and `tasks/research.md` if created) to artifacts
+- Add `tasks/design.md` (and `tasks/architect/research.md` if created) to artifacts
 - Set `completedAt`
 
 Inform:

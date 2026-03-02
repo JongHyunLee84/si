@@ -101,6 +101,10 @@ If during implementation you discover:
 Implementation is done directly in the project codebase.
 Record what was built in `tasks/si-progress.json` notes.
 
+### Sub-reports (Optional)
+중간 산출물이나 상세 분석이 있으면 `tasks/develop/`에 개별 파일로 저장.
+서브리포트 경로는 `tasks/si-progress.json`의 `artifacts` 배열에 추가.
+
 ## Update Progress
 
 Update `tasks/si-progress.json`:

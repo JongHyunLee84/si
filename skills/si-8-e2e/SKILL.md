@@ -93,6 +93,10 @@ ANY failure → investigate and fix before proceeding.
 - E2E test files in the project codebase
 - Test results summary
 
+### Sub-reports (Optional)
+중간 산출물이나 상세 분석이 있으면 `tasks/e2e/`에 개별 파일로 저장.
+서브리포트 경로는 `tasks/si-progress.json`의 `artifacts` 배열에 추가.
+
 ## Update Progress
 
 Update `tasks/si-progress.json`:
