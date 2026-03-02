@@ -159,6 +159,61 @@ Pencil이 없을 때 Claude Code가 직접 프로토타입 생성:
 - 라우팅/네비게이션 → Screen Flows
 - 이벤트 핸들러 → Interaction Specifications
 
+### 출력: `tasks/ui-design.md` 템플릿
+
+```markdown
+# UI Design Specification
+
+## 1. Design Direction
+[Summary of chosen UI approach — 2-3 sentences]
+
+## 2. Screen Inventory
+| Screen | Route/Path | Primary Action | Components |
+|--------|-----------|----------------|------------|
+| | | | |
+
+## 3. Component Hierarchy
+[Tree structure showing component nesting per screen]
+
+## 4. Design Tokens
+### Colors
+| Token | Value | Usage |
+|-------|-------|-------|
+| | | |
+
+### Typography
+| Token | Font / Size / Weight | Usage |
+|-------|---------------------|-------|
+| | | |
+
+### Spacing
+| Token | Value | Usage |
+|-------|-------|-------|
+| | | |
+
+## 5. Screen Flows
+[Mermaid diagram showing navigation between screens]
+
+## 6. Interaction Specifications
+| Component | Trigger | Behavior | Animation |
+|-----------|---------|----------|-----------|
+| | | | |
+
+## 7. Responsive Strategy
+[Breakpoints, layout shifts, mobile-first approach]
+
+## 8. Accessibility Notes
+- Keyboard navigation plan
+- Focus management
+- Color contrast requirements
+- Screen reader considerations
+
+## 9. Design-to-Code Mapping
+| UI Component | Technical Component | Props/Interface | Source |
+|-------------|-------------------|-----------------|--------|
+| | | | design.md §6 |
+```
+
 ### 필수 검증:
 1. **Coverage**: 모든 기능 요구사항이 최소 하나의 화면에 매핑됨
 2. **Consistency**: 같은 패턴에 같은 컴포넌트 사용
