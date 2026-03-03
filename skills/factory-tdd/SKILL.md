@@ -1,12 +1,36 @@
 ---
-name: si-tdd
+name: factory-tdd
 user-invocable: true
-description: "SI 수용 기준 특화 TDD — Given/When/Then에서 테스트 플랜 자동 추출, AC별 R-G-R 사이클 트래킹"
+description: "테스트 주도 개발 — Red → Green → Refactor + 수용 기준 기반 테스트 플랜 자동 추출"
 ---
 
-# SI Test-Driven Development
+# Factory TDD
 
 SI 워크플로우의 TDD Phase를 위한 엄격한 Red-Green-Refactor 스킬. 수용 기준(Given/When/Then)에서 테스트 플랜을 추출하고, AC별로 사이클을 트래킹한다.
+
+## Recommended Inputs
+
+- `factory/architect/architect.md` — 수용 기준(AC) 추출 (필수)
+- `factory/ui-design/ui-design.md` — UI 수용 기준, 레이아웃 스펙 (선택)
+- `factory/analysis/analysis.md` — 선택한 접근 방식, 파일 경로 (권장)
+- `factory/prd/prd.md` — 트레이서빌리티용 요구사항 ID (권장)
+
+Read these files BEFORE writing any code (Read-first principle).
+
+## Scope Boundary
+
+**This phase**: Write tests for acceptance criteria and minimal code to make them pass (R-G-R). The Iron Law governs HOW; this section governs WHAT.
+
+**MUST NOT:**
+- Change acceptance criteria or design decisions → `factory-architect` (flag for review if criteria seem wrong)
+- Implement beyond what acceptance criteria require — scope is `factory/architect/architect.md` section 8 only
+- Refactor code unrelated to current acceptance criteria → log as TODO for `factory-develop`
+- Add dependencies not in the design → `factory-architect` must approve
+- Write E2E tests → `factory-e2e` (mark as "deferred to factory-e2e")
+
+**Scope test**: Every line of code must link to an AC-ID from the design. Code without an AC-ID traceability link is out of scope.
+
+**When boundary is crossed**: STOP the R-G-R cycle. Design gap → "→ factory-architect". Scope expansion → log as TODO, continue with current AC.
 
 ## When to Use
 
@@ -45,9 +69,9 @@ NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 
 ---
 
-## Step 1: Test Plan from Acceptance Criteria
+## Step 1: Extract Test Plan from Acceptance Criteria
 
-`tasks/si-4-architect.md`의 수용 기준(Given/When/Then)에서 테스트 플랜을 추출한다.
+`factory/architect/architect.md`의 수용 기준(Given/When/Then) section 8에서 테스트 플랜을 추출한다.
 
 | AC ID | Requirement | Test Type | Test File | Status |
 |-------|-------------|-----------|-----------|--------|
@@ -57,7 +81,7 @@ NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 **Test Type Selection:**
 - 순수 로직, 데이터 변환 → **Unit test**
 - DB, API, 파일 I/O → **Integration test**
-- 전체 사용자 흐름 → **E2E** (si-8-e2e phase로 연기)
+- 전체 사용자 흐름 → **E2E** (factory-e2e phase로 연기)
 
 ---
 
@@ -140,7 +164,7 @@ GREEN 이후에만:
 
 ---
 
-## Step 3: AC Cycle Tracking
+## Step 3: Track Cycles
 
 각 R-G-R 사이클 후 테스트 플랜 업데이트:
 
@@ -155,7 +179,7 @@ AC-003: ⏳ Pending
 ## Step 4: Edge Cases & Error Paths
 
 모든 수용 기준에 통과하는 테스트가 있은 후:
-1. `tasks/si-4-architect.md`의 Error Handling 섹션 검토
+1. `factory/architect/architect.md`의 Error Handling 섹션 검토
 2. 각 에러 시나리오에 대한 테스트 작성
 3. R-G-R로 에러 처리 구현
 
@@ -354,3 +378,12 @@ PASS
 
 **REFACTOR**
 여러 필드에 대한 검증이 필요하면 추출.
+
+## Output
+
+- Test files (per project conventions)
+- `factory/tdd/` — TDD session notes, test plan tracking (optional)
+
+## Completion
+
+TDD가 완료되었습니다. 모든 수용 기준에 대한 테스트가 통과합니다.

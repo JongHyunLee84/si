@@ -1,16 +1,34 @@
 ---
-name: si-code-review
+name: factory-code-review
 user-invocable: true
-description: "SI 정량 채점 특화 코드 리뷰 — 수용 기준 대조 매트릭스, 90/70/fail 판정, severity 분류"
+description: "정량 채점 코드 리뷰 + 최종 수용 판정 — 수용 기준 대조 매트릭스, 90/70/fail 판정, severity 분류"
 ---
 
-# SI Code Review
+# Factory Code Review
 
-SI 워크플로우의 Acceptance Phase를 위한 코드 리뷰 스킬. 수용 기준에 대한 정량 채점과 severity 분류를 수행하고, 최종 준수율 판정을 내린다.
+수용 기준에 대한 정량 채점과 severity 분류를 수행하고, 최종 준수율 판정을 내린다.
 
 ## Core Principle
 
-**주관적 "looks good"이 아닌 정량적 준수율로 판정한다.**
+**주관적 "looks good"이 아닌 정량적 준수율로 판정한다.** 이 스킬은 **judge**이며, **doer**가 아니다.
+
+## Recommended Inputs
+
+- `factory/architect/architect.md` — 수용 기준, 컴포넌트, 인터페이스 (필수)
+- `factory/prd/prd.md` — 요구사항 ID (권장)
+
+## Scope Boundary
+
+**This skill**: Score implementation against acceptance criteria and deliver a quantitative verdict.
+
+**MUST NOT:**
+- Write, modify, or delete any code → `factory-develop`
+- Fix issues or deviations directly → route to appropriate skill
+- Change acceptance criteria to match implementation → criteria judge the code, not vice versa
+
+**The Judge's Oath**: This skill produces a SCORE and a VERDICT, not CODE CHANGES. Below-threshold scores route back to the appropriate skill — never "just fix it here".
+
+**When boundary is crossed**: STOP. Revert changes, re-score from clean state. Route deviations to `factory-develop` (implementation gaps) or `factory-architect` (design gaps).
 
 ---
 
@@ -28,16 +46,16 @@ git ls-files --others --exclude-standard  # untracked new files
 
 리뷰 대상 파악:
 
-1. `tasks/si-2-prd.md` — 요구사항 ID
-2. `tasks/si-4-architect.md` — 수용 기준, 컴포넌트, 인터페이스
-3. `tasks/si-3-analysis.md` — 선택한 접근 방식
+1. `factory/prd/prd.md` — 요구사항 ID
+2. `factory/architect/architect.md` — 수용 기준, 컴포넌트, 인터페이스
+3. `factory/analysis/analysis.md` — 선택한 접근 방식
 4. 변경된 파일 (`git diff ${BASE_SHA}..${HEAD_SHA}`로 확인)
 
 ---
 
 ## Step 2: Acceptance Criteria Scoring Matrix
 
-`tasks/si-4-architect.md`의 **모든** 수용 기준에 대해 채점:
+`factory/architect/architect.md`의 **모든** 수용 기준에 대해 채점:
 
 | AC ID | Requirement | Test Status | Implementation Status | Verdict |
 |-------|-------------|-------------|----------------------|---------|
@@ -138,7 +156,7 @@ Score: [N]% ([✅ count]/[total])
 
 ## Step 7: Final Report
 
-`tasks/si-9-acceptance.md`에 작성:
+`factory/code-review/code-review.md`에 작성:
 
 ```markdown
 # Acceptance Report: [Project Name]
@@ -188,6 +206,24 @@ Score: [N]% ([✅ count]/[total])
 - [ ] 품질 체크리스트 완료됨
 - [ ] 편차 문서화됨 (있는 경우)
 ```
+
+---
+
+## Step 8: Present Verdict
+
+Display the summary:
+```
+── Factory Code Review Report ───────────
+Project:    [name]
+Score:      [N]% — [PASS/NEEDS IMPROVEMENT/REDESIGN]
+Tests:      [N/N passing]
+Deviations: [N]
+─────────────────────────────────────────
+```
+
+**Routing on non-PASS verdicts:**
+- **NEEDS IMPROVEMENT (70-89%)**: Top 3 deviations listed → `/factory-develop`로 갭 수정 후 `/factory-e2e` 재실행
+- **REDESIGN (<70%)**: Top 3 deviations listed → `/factory-architect`로 설계 재검토부터 다시 진행
 
 ---
 
@@ -256,3 +292,13 @@ Score: [N]% ([✅ count]/[total])
 **Compliance Score: 92% — PASS**
 **Reasoning:** Core implementation is solid with good architecture and tests. Important issues are easily fixed and don't affect core functionality.
 ```
+
+---
+
+## Completion Message
+
+Verdict-dependent completion:
+
+- **PASS**: "프로젝트가 모든 수용 기준을 통과했습니다. 배포/머지 준비가 완료되었습니다."
+- **NEEDS IMPROVEMENT**: "개선이 필요합니다. `/factory-develop`로 갭을 수정하세요."
+- **REDESIGN**: "근본적 재설계가 필요합니다. `/factory-architect`로 돌아가세요."

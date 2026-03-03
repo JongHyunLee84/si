@@ -1,11 +1,11 @@
-# SI Workflow Plugin
+# Factory — Software Development Toolbox
 
-멀티 플랫폼 소프트웨어 개발 워크플로우 — Research → PRD → Analysis → Architect → UI Design → TDD → Develop → E2E → Acceptance 9단계.
+독립적으로 호출 가능한 9개 스킬의 소프트웨어 개발 도구 상자. 각 스킬은 `factory/<skill>/` 디렉토리에 작업 기록을 남기고, 다른 스킬은 이를 참고할 수 있지만 강제하지 않는다.
 
 ## 아키텍처
 
 ```
-skills/    → Layer 1 (워크플로우 진입점, si-N-*) → Layer 2 (능력 엔진, si-*) 위임
+skills/    → 단일 레이어: 9개 독립 스킬 (factory-*)
 AGENTS.md  → Codex/Cursor/Copilot 진입점
 ```
 
@@ -21,9 +21,9 @@ AGENTS.md  → Codex/Cursor/Copilot 진입점
 | `.claude-plugin/marketplace.json` | `plugins[0].version` |
 
 **SemVer 기준:**
-- **patch** (0.2.0 → 0.2.1): 버그 수정, 오타, 문구 변경
-- **minor** (0.2.0 → 0.3.0): 새 커맨드/스킬 추가, 기존 동작 변경
-- **major** (0.x → 1.0): 호환성 깨지는 변경 (커맨드 삭제, 스킬 인터페이스 변경)
+- **patch** (1.0.0 → 1.0.1): 버그 수정, 오타, 문구 변경
+- **minor** (1.0.0 → 1.1.0): 새 커맨드/스킬 추가, 기존 동작 변경
+- **major** (1.x → 2.0): 호환성 깨지는 변경 (커맨드 삭제, 스킬 인터페이스 변경)
 
 > 버전을 범프하지 않으면 marketplace update 시 캐시가 갱신되지 않아 사용자가 변경사항을 받지 못한다.
 
@@ -33,41 +33,29 @@ AGENTS.md  → Codex/Cursor/Copilot 진입점
 
 이름이나 경로를 변경할 때 아래 참조를 함께 업데이트해야 한다.
 
-### 워크플로우 스킬 이름 변경 시
+### 스킬 이름 변경 시
 
-1. `skills/si-start/SKILL.md` — Phase Router 테이블 (9개 엔트리)
-2. 각 워크플로우 스킬의 완료 메시지 (si-start 참조)
-3. `skills/si-7-develop/SKILL.md` — si-6-tdd, si-4-architect 참조
-4. `skills/si-8-e2e/SKILL.md` — si-9-acceptance 참조
-5. `skills/si-9-acceptance/SKILL.md` — si-7-develop, si-8-e2e, si-4-architect 참조
-6. `AGENTS.md` — 스킬 테이블
-7. `README.md` — 스킬 테이블
-8. `settings/templates/si-3-analysis.md` — attribution 코멘트
-9. `settings/templates/si-4-architect.md` — attribution 코멘트
-
-### 능력 스킬 이름 변경 시
-
-1. 호출하는 워크플로우 스킬의 "Follow the `si-*` skill" 문구
-2. 스킬 자체 `SKILL.md` frontmatter `name:` 필드
-3. `AGENTS.md` — 능력 스킬 테이블
-4. `README.md` — 능력 스킬 테이블
+1. 각 스킬의 Scope Boundary — 다른 스킬 참조 (`factory-*`)
+2. 각 스킬의 Recommended Inputs 섹션
+3. 각 스킬의 완료 메시지 내 스킬 참조
+4. `AGENTS.md` — 스킬 테이블
+5. `README.md` — 스킬 테이블
 
 ### settings/rules 파일 변경 시
 
-1. 참조하는 워크플로우 스킬: `si-start`(design-review), `si-3-analysis`(gap-analysis), `si-4-architect`(design-review)
-2. `skills/si-prd/SKILL.md` — ears-format 참조
+1. 참조하는 스킬: `factory-architect` (design-review), `factory-analysis` (gap-analysis), `factory-prd` (ears-format)
 
 ### settings/templates 파일 변경 시
 
-1. 참조하는 워크플로우 스킬: `si-3-analysis`(si-3-analysis.md), `si-4-architect`(si-4-architect.md), `si-start`(si-progress.json)
+1. 참조하는 스킬: `factory-analysis` (factory-analysis.md), `factory-architect` (factory-architect.md)
 2. 템플릿 내부 attribution 코멘트
 
-### tasks/ 아티팩트 경로 변경 시
+### factory/ 아티팩트 경로 변경 시
 
 | 아티팩트 | 영향 범위 |
 |----------|----------|
-| `tasks/si-progress.json` | 모든 워크플로우 스킬 + session-start hook (가장 영향 큼) |
-| `tasks/si-4-architect.md` | 6개 워크플로우 스킬 + 3개 능력 스킬 |
-| `tasks/si-2-prd.md` | 5개 워크플로우 스킬 + 2개 능력 스킬 |
-| `tasks/si-N-*/` | 해당 phase 스킬 + 다운스트림 phase (서브리포트 참조) |
-| `tasks/si-4-architect/research.md` | si-4-architect 내부 (기존 `tasks/research.md` 대체) |
+| `factory/architect/architect.md` | 6개 스킬 (tdd, develop, e2e, code-review, ui-design, analysis) |
+| `factory/prd/prd.md` | 5개 스킬 (analysis, architect, tdd, develop, code-review) |
+| `factory/research/research.md` | 3개 스킬 (prd, analysis, architect) |
+| `factory/analysis/analysis.md` | 3개 스킬 (architect, develop, code-review) |
+| `factory/ui-design/ui-design.md` | 1개 스킬 (tdd) |

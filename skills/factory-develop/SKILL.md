@@ -1,42 +1,41 @@
 ---
-name: si-7-develop
+name: factory-develop
 user-invocable: true
 description: 구현 가이드 — 에스컬레이션 체크, 중복 판정, 품질 기준 적용
 ---
 
-# SI Develop Phase
+# Factory Develop
 
-You are the SI development guide. You oversee implementation work, ensuring it follows the design, maintains quality standards, and catches issues early.
+You are the Factory development guide. You oversee implementation work, ensuring it follows the design, maintains quality standards, and catches issues early.
 
-## Prerequisites
-Read these files:
-1. `tasks/si-4-architect.md` — the source of truth for what to build
-2. `tasks/si-3-analysis.md` — selected approach, conventions
-3. `tasks/si-progress.json`
+## Recommended Inputs
+
+- `factory/architect/architect.md` — 빌드 명세 (필수)
+- `factory/analysis/analysis.md` — 선택한 접근 방식, 컨벤션 (권장)
 
 ## Scope Boundary
 
-**This phase**: Implement the design from `tasks/si-4-architect.md` — write production code per specification.
+**This skill**: Implement the design from `factory/architect/architect.md` — write production code per specification.
 
 **MUST NOT:**
-- Redesign architecture or modify interfaces beyond the design → `si-4-architect`
-- Add features or behaviors not in the design → `si-2-prd`
-- Write or modify E2E tests → `si-8-e2e`
-- Score or judge implementation quality → `si-9-acceptance`
+- Redesign architecture or modify interfaces beyond the design → `factory-architect`
+- Add features or behaviors not in the design → `factory-prd`
+- Write or modify E2E tests → `factory-e2e`
+- Score or judge implementation quality → `factory-code-review`
 
 **Discovery protocol** (during implementation):
 - Needed refactoring → log as TODO, don't fix now (unless blocking)
-- Missing requirement → log in `tasks/si-2-prd.md` Open Questions, don't implement
-- Design flaw → STOP, note the issue, suggest returning to `si-4-architect`
+- Missing requirement → log in `factory/prd/prd.md` Open Questions, don't implement
+- Design flaw → STOP, note the issue, suggest returning to `factory-architect`
 - Unrelated bug → log as separate issue, don't fix in this flow
 
-**When boundary is crossed**: Check `git diff` — if changes exceed the Change Impact Map (design section 9), revert out-of-scope changes and document in `tasks/si-progress.json`.
+**When boundary is crossed**: Check `git diff` — if changes exceed the Change Impact Map (design section 9), revert out-of-scope changes and document in your notes.
 
 ## Execution Flow
 
 ### Step 1: Implementation Checklist
 
-From `tasks/si-4-architect.md`, extract all components and interfaces into an ordered implementation checklist:
+From `factory/architect/architect.md`, extract all components and interfaces into an ordered implementation checklist:
 
 ```markdown
 ## Implementation Checklist
@@ -79,10 +78,10 @@ Score the new component against existing code:
 
 For each component:
 
-1. **Confirm interface** — matches `tasks/si-4-architect.md` typed signatures
-2. **Follow conventions** — from `tasks/si-3-analysis.md` conventions section
-3. **Error handling** — matches `tasks/si-4-architect.md` error table
-4. **Tests exist** — from TDD phase (if running after si-6-tdd)
+1. **Confirm interface** — matches `factory/architect/architect.md` typed signatures
+2. **Follow conventions** — from `factory/analysis/analysis.md` conventions section
+3. **Error handling** — matches `factory/architect/architect.md` error table
+4. **Tests exist** — from TDD phase (if running after factory-tdd)
 
 ### Step 4: Quality Checks (Continuous)
 
@@ -104,23 +103,10 @@ After all components are implemented:
 3. Verify no unintended changes (git diff review)
 4. Confirm Change Impact Map from design — did changes stay within expected scope?
 
-If changes exceeded expected scope → document why in `tasks/si-progress.json` notes.
-
 ## Output
 
 Implementation is done directly in the project codebase.
-Record what was built in `tasks/si-progress.json` notes.
-
-### Sub-reports (Optional)
-중간 산출물이나 상세 분석이 있으면 `tasks/si-7-develop/`에 개별 파일로 저장.
-서브리포트 경로는 `tasks/si-progress.json`의 `artifacts` 배열에 추가.
-
-## Update Progress
-
-Update `tasks/si-progress.json`:
-- Set `phases.develop.status = "completed"`
-- Add implementation file paths to artifacts
-- Set `completedAt`
+Detailed notes or intermediate artifacts may be saved to `factory/develop/`.
 
 Inform:
-"구현이 완료되었습니다. `/si-start`로 돌아가서 E2E 테스트를 진행하세요."
+"구현이 완료되었습니다. `/factory-e2e`로 E2E 테스트를 진행하거나 `/factory-code-review`로 코드 리뷰를 실행하세요."

@@ -1,66 +1,61 @@
-# SI Workflow
+# Factory — Software Development Toolbox
 
-9-stage software development workflow:
-Research → PRD → Analysis → Architect → UI Design → TDD → Develop → E2E → Acceptance
+독립적으로 호출 가능한 9개 스킬. 순서 없이 필요한 스킬을 바로 실행.
 
 ## Quick Start
-Run `/si-start` to begin or resume.
 
-## Workflow Skills (Phase 순서)
+```
+/factory-research    # 시장/기술 리서치
+/factory-prd         # 요구사항 정의
+/factory-analysis    # 코드/시스템 분석
+/factory-architect   # 기술 설계
+/factory-ui-design   # UI/UX 디자인
+/factory-tdd         # TDD (Red-Green-Refactor)
+/factory-develop     # 구현
+/factory-e2e         # E2E 테스트
+/factory-code-review # 코드 리뷰 + 수용 검증
+```
 
-| # | Skill | Description |
-|---|-------|-------------|
-| - | si-start | 오케스트레이터: Phase 추적, 게이트, 라우팅 |
-| 1 | si-1-research | 시장/기술 리서치 |
-| 2 | si-2-prd | 인터뷰 기반 요구사항 정의 |
-| 3 | si-3-analysis | 코드/시스템 분석, 갭 분석 |
-| 4 | si-4-architect | 기술 설계, ADR, 수용 기준 |
-| 5 | si-5-ui-design | UI/UX 디자인 |
-| 6 | si-6-tdd | TDD (Red-Green-Refactor) |
-| 7 | si-7-develop | 구현 가이드 |
-| 8 | si-8-e2e | E2E 테스트 |
-| 9 | si-9-acceptance | 준수율 채점 + 최종 검증 |
-| - | si-save | 진행 상태 저장 |
+## Skills
 
-## Capability Skills (워크플로우 스킬이 호출)
+| Skill | Description | Output |
+|-------|-------------|--------|
+| factory-research | 시장/기술 리서치 (단일/멀티 토픽) | `factory/research/` |
+| factory-prd | 인터뷰 기반 요구사항 정의 (EARS) | `factory/prd/prd.md` |
+| factory-analysis | 코드/시스템 분석, 갭 분석, 3옵션 평가 | `factory/analysis/analysis.md` |
+| factory-architect | 기술 설계, ADR, 수용 기준, GO/NO-GO | `factory/architect/architect.md` |
+| factory-ui-design | UI/UX 디자인 (Pencil MCP / HTML 폴백) | `factory/ui-design/ui-design.md` |
+| factory-tdd | TDD — Red → Green → Refactor | `factory/tdd/` |
+| factory-develop | 구현 가이드 — 에스컬레이션, 중복 판정 | `factory/develop/` |
+| factory-e2e | E2E 테스트 — 수용 기준 기반 검증 | `factory/e2e/` |
+| factory-code-review | 정량 채점 + 90/70/fail 판정 | `factory/code-review/code-review.md` |
 
-| Skill | Called By | Description |
-|-------|-----------|-------------|
-| si-deep-research | si-1-research | 체계적 리서치 (폴백 체인, 병렬 수집) |
-| si-prd | si-2-prd | 인터뷰 기반 PRD (AskUserQuestion 강제) |
-| si-ui-design | si-5-ui-design | Pencil MCP 활용 UI 디자인 + HTML 프로토타입 폴백 |
-| si-tdd | si-6-tdd | R-G-R + AC 트래킹 |
-| si-code-review | si-9-acceptance | 정량 채점 + severity 분류 |
+## Recommended Flow (Not Enforced)
 
-## Gates (사용자 승인 필요)
+```
+research → prd → analysis → architect → ui-design → tdd → develop → e2e → code-review
+```
 
-1. Research 완료 후 — 진행 가치 판단
-2. PRD 완료 후 — 요구사항 확인
-3. Architect 완료 후 — GO/NO-GO 설계 리뷰
-4. UI Design 완료 후 — UI 디자인 승인
+각 스킬은 독립적이지만, 위 순서로 실행하면 이전 스킬의 산출물을 자연스럽게 참고합니다.
 
 ## Artifacts
 
-All outputs → `tasks/` directory. State → `tasks/si-progress.json`.
-
-### Sub-reports
-각 Phase의 중간 산출물은 `tasks/si-N-*/`에 개별 파일로 저장:
+모든 산출물은 `factory/` 디렉토리에 저장:
 
 ```
-tasks/
-  si-1-research/  # 토픽별 리서치
-  si-2-prd/       # 인터뷰 노트
-  si-3-analysis/  # 상세 분석
-  si-4-architect/ # 기술 리서치 버퍼, spike
-  si-5-ui-design/ # 스크린별 상세
-  si-6-tdd/       # 테스트 계획 상세
-  si-7-develop/   # 구현 노트
-  si-8-e2e/       # 시나리오별 결과
-  si-9-acceptance/ # 리뷰 상세
+factory/
+  research/     # 리서치 보고서 + 토픽별 서브리포트
+  prd/          # 요구사항 정의서
+  analysis/     # 분석 보고서
+  architect/    # 기술 설계 문서 + 리서치 버퍼
+  ui-design/    # UI 디자인 명세
+  tdd/          # 테스트 플랜, 사이클 기록
+  develop/      # 구현 노트
+  e2e/          # E2E 테스트 리포트
+  code-review/  # 채점 매트릭스 + 판정
 ```
-
-최종 통합 파일은 `tasks/si-N-<phase>.md`에 유지.
 
 ## Settings
+
 - `settings/rules/` — EARS format, gap analysis framework, design review checklist
-- `settings/templates/` — si-3-analysis, si-4-architect, progress JSON templates
+- `settings/templates/` — factory-analysis, factory-architect 템플릿

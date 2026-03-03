@@ -1,17 +1,17 @@
 {
-  "name": "si",
+  "name": "factory",
   "owner": {
     "name": "jhlee"
   },
   "metadata": {
-    "description": "SI 스타일 소프트웨어 개발 워크플로우 플러그인"
+    "description": "Factory 소프트웨어 개발 도구 상자 플러그인"
   },
   "plugins": [
     {
-      "name": "si",
+      "name": "factory",
       "source": "./",
-      "description": "SI 워크플로우 — Research → PRD → Analysis → Architect → UI Design → TDD → Develop → E2E → Acceptance",
-      "version": "0.8.0"
+      "description": "Factory — 독립 호출 가능한 소프트웨어 개발 도구 상자",
+      "version": "1.0.0"
     }
   ]
 }

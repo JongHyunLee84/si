@@ -1,7 +1,7 @@
 ---
-name: si-ui-design
+name: factory-ui-design
 user-invocable: true
-description: "SI UI/UX 디자인 특화 — Pencil MCP 활용, HTML 프로토타입 폴백, 디자인-코드 매핑"
+description: "UI/UX 디자인 — 화면 레이아웃, 인터랙션, 디자인 시스템 정의 (Pencil MCP + HTML 폴백)"
 compatibility:
   required_tools:
     - WebFetch
@@ -14,9 +14,17 @@ compatibility:
       purpose: "Parallel subagents for multi-screen design"
 ---
 
-# SI UI Design
+# Factory UI Design
 
-SI 워크플로우의 UI Design Phase를 위한 스킬. 기술 설계(tasks/si-4-architect.md)를 기반으로 실현 가능한 UI를 설계하고, TDD 진입 전 "무엇을 만들지"를 시각적으로 합의한다.
+기술 설계(`factory/architect/architect.md`)를 기반으로 실현 가능한 UI를 설계하고, TDD 진입 전 "무엇을 만들지"를 시각적으로 합의한다.
+
+## Recommended Inputs
+
+- `factory/architect/architect.md` — Technical Design (강력 권장)
+- `factory/prd/prd.md` — PRD (권장)
+- `factory/analysis/analysis.md` — Analysis (있는 경우)
+
+Read these files BEFORE any design work (Read-first principle).
 
 ## Reference Files
 
@@ -26,6 +34,20 @@ SI 워크플로우의 UI Design Phase를 위한 스킬. 기술 설계(tasks/si-4
 - **`references/pencil-pen-format.md`** — .pen 파일 포맷 스펙: 오브젝트 타입, 레이아웃, 필/스트로크/이펙트, 컴포넌트/인스턴스, 변수/테마. .pen 파일 직접 읽기/수정 시 참조.
 
 모든 참조를 미리 읽을 필요 없음. 특정 결정이 필요할 때 참조.
+
+## Scope Boundary
+
+**This phase**: Define UI specifications — screen layouts, interactions, design tokens, design-to-code mapping.
+
+**MUST NOT:**
+- Implement business logic, backend code, or database queries → `factory-develop`
+- Modify or create production source files → `factory-develop` owns the codebase
+- Change data models, API contracts, or architecture → `factory-architect`
+- Promote prototypes to production code — prototypes are disposable design artifacts only
+
+**Output test**: This phase produces design SPECIFICATIONS (documents, mockups, .pen files), not working CODE. Source files outside `factory/` must not be modified.
+
+**When boundary is crossed**: STOP. Move implementation work to design-to-code mapping (section 9) as guidance for `factory-develop`. Delete any production code created.
 
 ---
 
@@ -49,20 +71,20 @@ SI 워크플로우의 UI Design Phase를 위한 스킬. 기술 설계(tasks/si-4
 2. **일관성**: 같은 패턴에 같은 컴포넌트. 디자인 토큰으로 통일.
 3. **접근성**: 키보드 네비게이션, 포커스 관리, 충분한 대비, 의미 있는 빈/에러 상태.
 4. **최소 놀라움**: 사용자가 예상하는 위치에 예상하는 동작. 화려한 효과보다 명확한 인터랙션.
-5. **기술 실현 가능성**: `tasks/si-4-architect.md`의 컴포넌트 구조와 API 경계 안에서 설계.
+5. **기술 실현 가능성**: `factory/architect/architect.md`의 컴포넌트 구조와 API 경계 안에서 설계.
 
 ---
 
 ## Step 0: Context Gathering
 
 ### 기술 설계에서 추출할 정보:
-- `tasks/si-4-architect.md` §2 Architecture — 컴포넌트 구조, 레이어
-- `tasks/si-4-architect.md` §4 System Flows — 사용자 흐름 (Mermaid)
-- `tasks/si-4-architect.md` §6 Components & Interfaces — 공개 인터페이스
-- `tasks/si-4-architect.md` §7 Data Models — 화면에 표시될 데이터
+- `factory/architect/architect.md` §2 Architecture — 컴포넌트 구조, 레이어
+- `factory/architect/architect.md` §3 System Flows — 사용자 흐름 (Mermaid)
+- `factory/architect/architect.md` §5 Components & Interfaces — 공개 인터페이스
+- `factory/architect/architect.md` §6 Data Models — 화면에 표시될 데이터
 
 ### 요구사항에서 추출할 정보:
-- `tasks/si-2-prd.md` — 기능 요구사항별 사용자 스토리
+- `factory/prd/prd.md` — 기능 요구사항별 사용자 스토리
 - 비기능 요구사항 중 UI 관련 (반응형, 성능, 접근성)
 
 ### 기존 코드에서 추출할 정보 (Extension/Simple Addition일 때):
@@ -145,7 +167,7 @@ Pencil이 없을 때 Claude Code가 직접 프로토타입 생성:
 
 ## Step 4: Design-to-Spec Conversion
 
-디자인 결과물을 `tasks/si-5-ui-design.md`로 변환:
+디자인 결과물을 `factory/ui-design/ui-design.md`로 변환:
 
 ### Pencil MCP 도구로 추출 (Pencil 사용 시):
 - `batch_get` → 디자인 요소 데이터 → Screen Inventory
@@ -159,7 +181,7 @@ Pencil이 없을 때 Claude Code가 직접 프로토타입 생성:
 - 라우팅/네비게이션 → Screen Flows
 - 이벤트 핸들러 → Interaction Specifications
 
-### 출력: `tasks/si-5-ui-design.md` 템플릿
+### 출력: `factory/ui-design/ui-design.md` 템플릿
 
 ```markdown
 # UI Design Specification
@@ -211,13 +233,13 @@ Pencil이 없을 때 Claude Code가 직접 프로토타입 생성:
 ## 9. Design-to-Code Mapping
 | UI Component | Technical Component | Props/Interface | Source |
 |-------------|-------------------|-----------------|--------|
-| | | | si-4-architect.md §6 |
+| | | | factory/architect/architect.md §5 |
 ```
 
 ### 필수 검증:
 1. **Coverage**: 모든 기능 요구사항이 최소 하나의 화면에 매핑됨
 2. **Consistency**: 같은 패턴에 같은 컴포넌트 사용
-3. **Feasibility**: 모든 UI 컴포넌트가 `tasks/si-4-architect.md`의 기술 컴포넌트에 매핑됨
+3. **Feasibility**: 모든 UI 컴포넌트가 `factory/architect/architect.md`의 기술 컴포넌트에 매핑됨
 4. **Accessibility**: 키보드, 대비, 포커스 계획 존재
 
 ---
@@ -228,7 +250,7 @@ Pencil이 없을 때 Claude Code가 직접 프로토타입 생성:
 
 1. 프로토타입/코드 변환 결과를 브라우저에서 렌더링
 2. 스크린샷 캡처
-3. `tasks/si-4-architect.md`의 인터페이스와 교차 검증
+3. `factory/architect/architect.md`의 인터페이스와 교차 검증
 4. 접근성 기본 확인 (대비, 포커스 순서)
 
 ---
@@ -237,7 +259,7 @@ Pencil이 없을 때 Claude Code가 직접 프로토타입 생성:
 
 이 행동을 하고 있으면 멈추고 수정:
 
-- **기술 설계 무시**: `tasks/si-4-architect.md`의 컴포넌트 구조와 맞지 않는 UI 설계
+- **기술 설계 무시**: `factory/architect/architect.md`의 컴포넌트 구조와 맞지 않는 UI 설계
 - **과잉 디자인**: 핵심 화면 대신 모든 가능한 화면을 상세 설계
 - **토큰 미정의**: 색상/간격/타이포를 하드코딩하고 토큰화하지 않음
 - **접근성 후순위**: "나중에 접근성" → 처음부터 기본은 포함
@@ -255,3 +277,7 @@ Pencil이 없을 때 Claude Code가 직접 프로토타입 생성:
 | 사용자가 시각적 피드백 못 줌 | ASCII 목업 + 설명으로 대안 제시 |
 | 기존 디자인이 없음 (신규 프로젝트) | 경쟁 앱 참고 제안 + 기본 레이아웃 패턴 적용 |
 | 화면이 너무 많음 | 핵심 2-3개만 상세 설계, 나머지는 패턴 재사용 명시 |
+
+## Completion
+
+UI 디자인이 완료되었습니다. 결과는 `factory/ui-design/ui-design.md`에 저장되었습니다.

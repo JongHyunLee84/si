@@ -360,7 +360,7 @@ Pencil에서 사용 가능한 프리빌트 디자인 킷:
 
 공통 UI 패턴(버튼, 카드, 폼, 네비게이션 등)에 즉시 사용 가능한 컴포넌트 제공.
 
-프로젝트의 `tasks/si-4-architect.md` Technology Stack에서 프레임워크를 확인하고 적절한 UI Kit 선택.
+프로젝트의 `factory/architect/architect.md` Technology Stack에서 프레임워크를 확인하고 적절한 UI Kit 선택.
 
 ---
 
