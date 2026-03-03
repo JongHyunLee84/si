@@ -40,6 +40,8 @@ After the skill completes, verify:
 - Value Hypothesis is present and falsifiable
 - Non-Goals section exists and is non-empty
 - Success Metrics have measurable criteria
+- Error/failure handling requirements exist (Medium/Complex: FR includes negative scenarios)
+- Assumptions are fully resolved (no ⚠️ items remaining in assumption log)
 
 ### Step 3: User Review Gate
 
