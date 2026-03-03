@@ -79,7 +79,7 @@ Read these files BEFORE any design work (Read-first principle).
 
 ### 기술 설계에서 추출할 정보:
 - `factory/architect/architect.md` §2 Architecture — 컴포넌트 구조, 레이어
-- `factory/architect/architect.md` §3 System Flows — 사용자 흐름 (Mermaid)
+- `factory/architect/architect.md` §3 System Flows — 사용자 흐름
 - `factory/architect/architect.md` §5 Components & Interfaces — 공개 인터페이스
 - `factory/architect/architect.md` §6 Data Models — 화면에 표시될 데이터
 
@@ -214,7 +214,7 @@ Pencil이 없을 때 Claude Code가 직접 프로토타입 생성:
 | | | |
 
 ## 5. Screen Flows
-[Mermaid diagram showing navigation between screens]
+[시각적 화면 흐름 다이어그램 (ASCII/텍스트 기반)]
 
 ## 6. Interaction Specifications
 | Component | Trigger | Behavior | Animation |

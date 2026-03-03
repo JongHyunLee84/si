@@ -14,12 +14,14 @@
 ## 2. Architecture
 
 ### Existing Pattern Map
-```mermaid
-graph TD
-  subgraph "Existing"
-  end
-  subgraph "New/Modified"
-  end
+```
+[Existing]
+  ├── ComponentA → ComponentB
+  └── ComponentC
+
+[New/Modified]
+  ├── NewComponent → ComponentA
+  └── ModifiedComponent
 ```
 
 ### Technology Stack
@@ -28,10 +30,11 @@ graph TD
 | | | | |
 
 ## 3. System Flows
-```mermaid
-sequenceDiagram
-  participant User
-  participant System
+```
+User ──→ System : request
+System ──→ DB : query
+DB ──→ System : result
+System ──→ User : response
 ```
 
 > Only non-obvious flows. Skip trivial CRUD.

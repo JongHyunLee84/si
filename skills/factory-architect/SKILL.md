@@ -45,36 +45,56 @@ Based on analysis results, classify:
 
 ### Step 2: Technical Research (if New Feature or Unknown gaps)
 
-Use WebSearch/WebFetch to investigate:
-- Latest patterns and best practices for the chosen technology
-- External dependency API signatures, rate limits, version compatibility
-- Similar implementations in established projects
+기술 조사가 필요하면 `factory-research` 스킬(Single Topic Mode)로 위임한다.
 
-**IMPORTANT**: Write all research to `factory/architect/research.md` (research buffer).
-`factory/architect/architect.md` contains ONLY decisions, not research notes.
+- `/factory-research --single`로 필요한 기술 토픽을 조사
+- 조사 결과는 `factory/research/`에 저장됨
+- Architect는 조사 결과를 읽고 설계에 반영
 
-If research is needed:
-1. Create `factory/architect/research.md` (or append if exists)
-2. Format: `## [Topic]` → findings → sources
+직접 WebSearch/WebFetch를 사용하지 않는다.
 
-### Step 3: Design Document
+### Step 3: Technology & Infrastructure Interview
+
+기술 스택과 인프라 구조를 사용자와 대화하며 결정한다. PRD의 인터뷰처럼 가정하지 않고 질문한다.
+
+**규칙:**
+1. 모든 질문은 `AskUserQuestion` 도구를 사용
+2. 한 번에 최대 4개 질문 배치
+3. 각 질문에 2-4개 선택지 + 사용자 자유 입력(Other) 가능
+4. 사용자가 "알아서 해줘"라고 해도 핵심 항목은 반드시 확인
+
+**Core Questions (이미 답변된 것은 skip):**
+
+1. **프론트엔드 기술**: "프론트엔드 프레임워크/라이브러리 선호가 있습니까?"
+2. **백엔드 기술**: "백엔드 언어/프레임워크는?"
+3. **데이터 저장**: "데이터베이스/저장소는?"
+4. **인프라/배포**: "배포 환경과 인프라는?"
+5. **외부 서비스**: "사용할 외부 API/SaaS가 있습니까?"
+6. **제약**: "기술 선택에 제약이 있습니까? (기존 시스템, 팀 경험, 라이선스 등)"
+
+**Progressive Assumption Surfacing:**
+매 배치 응답 후 확인/가정/미확인을 정리하여 사용자에게 표시.
+
+기술 스택이 확정되면 Design Document(Step 4)에 반영.
+
+### Step 4: Design Document
 
 Write to `factory/architect/architect.md` using template from `settings/templates/factory-architect.md`.
 
 Required sections (numbering matches template `factory-architect.md`):
 1. **Overview** — 2-3 paragraphs + Goals / Non-Goals
-2. **Architecture** — Existing pattern map (Mermaid) + Technology Stack table
-3. **System Flows** — Mermaid sequence diagrams for NON-OBVIOUS flows only
+2. **Architecture** — Existing pattern map (visual structure) + Technology Stack table
+3. **System Flows** — 시각적 시퀀스 다이어그램 (ASCII/텍스트 기반) for NON-OBVIOUS flows only
 4. **Requirements Traceability** — Every requirement maps to a component and interface
 5. **Components & Interfaces** — Typed signatures for ALL public interfaces
 6. **Data Models** — Schema definitions with migration notes
 7. **Error Handling** — Error scenario | Response | Recovery table
-8. **Acceptance Criteria** — Given/When/Then for EVERY requirement (Step 4)
-9. **Change Impact Map** — Direct, Indirect, No-Effect Zone (Step 5)
+8. **Acceptance Criteria** — Given/When/Then for EVERY requirement (Step 5)
+9. **Change Impact Map** — Direct, Indirect, No-Effect Zone (Step 6)
 10. **Testing Strategy** — Unit/Integration/E2E scope and tools
-11. **ADR** — If triggered (Step 6)
+11. **ADR** — If triggered (Step 7)
 
-### Step 4: Acceptance Criteria (ATDD Pattern)
+### Step 5: Acceptance Criteria (ATDD Pattern)
 
 For EACH functional requirement from PRD:
 
@@ -93,7 +113,7 @@ Review each acceptance criterion and remove any:
 
 Acceptance criteria describe BEHAVIOR only. Implementation details belong in Components & Interfaces.
 
-### Step 5: Change Impact Map (shinpr Pattern)
+### Step 6: Change Impact Map (shinpr Pattern)
 
 **Direct Impact** — files/modules that WILL be modified or created:
 | File/Module | Change Type | Description |
@@ -109,7 +129,7 @@ Acceptance criteria describe BEHAVIOR only. Implementation details belong in Com
 
 This prevents scope creep during implementation.
 
-### Step 6: ADR Trigger Check
+### Step 7: ADR Trigger Check
 
 Check each condition. ANY "Yes" → write an ADR:
 
@@ -135,7 +155,7 @@ Check each condition. ANY "Yes" → write an ADR:
 - **Rationale**: [2-3 sentences explaining why]
 ```
 
-### Step 7: GO/NO-GO Self-Check
+### Step 8: GO/NO-GO Self-Check
 
 Before presenting to user, apply design review criteria from `settings/rules/design-review.md`:
 
@@ -146,7 +166,7 @@ Before presenting to user, apply design review criteria from `settings/rules/des
 
 If any check fails, fix it before presenting.
 
-### Step 8: User GO/NO-GO Approval Gate
+### Step 9: User GO/NO-GO Approval Gate
 
 After the self-check passes, present the design summary and the review findings to the user:
 
@@ -168,13 +188,12 @@ After the self-check passes, present the design summary and the review findings 
 - NO-GO: 설계를 다시 검토합니다
 ```
 
-3. **On user NO-GO**: Identify the issues, update the design document, and re-run Step 7 → Step 8.
+3. **On user NO-GO**: Identify the issues, update the design document, and re-run Step 8 → Step 9.
 4. **On user GO or CONDITIONAL GO**: Finalize the design document and proceed to completion.
 
 ## Output
 
 - `factory/architect/architect.md` — design document (decisions only)
-- `factory/architect/research.md` — research buffer (investigation notes, if created)
 - ADR in architect.md section 11 (if triggered)
 
 ## Completion
