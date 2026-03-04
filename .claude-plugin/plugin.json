@@ -1,7 +1,7 @@
 {
   "name": "factory",
   "description": "Factory — 독립 호출 가능한 소프트웨어 개발 도구 상자",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": {
     "name": "jhlee"
   }

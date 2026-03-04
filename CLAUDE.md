@@ -47,7 +47,7 @@ AGENTS.md  → Codex/Cursor/Copilot 진입점
 
 ### settings/templates 파일 변경 시
 
-1. 참조하는 스킬: `factory-analysis` (factory-analysis.md), `factory-architect` (factory-architect.md)
+1. 참조하는 스킬: `factory-analysis` (factory-analysis.md), `factory-architect` (factory-architect.md), 전체 스킬 (decision-agenda.md)
 2. 템플릿 내부 attribution 코멘트
 
 ### factory/ 아티팩트 경로 변경 시
@@ -59,3 +59,4 @@ AGENTS.md  → Codex/Cursor/Copilot 진입점
 | `factory/research/research.md` | 3개 스킬 (prd, analysis, architect) |
 | `factory/analysis/analysis.md` | 3개 스킬 (architect, develop, code-review) |
 | `factory/ui-design/ui-design.md` | 1개 스킬 (tdd) |
+| `factory/<skill>/decisions.md` | 해당 스킬 + 모든 하류 스킬 (Decision Agenda 패턴) |

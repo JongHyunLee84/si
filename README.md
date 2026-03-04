@@ -49,7 +49,7 @@ factory-plugin/
 │
 ├── settings/
 │   ├── rules/                      # EARS format, gap analysis, design review
-│   └── templates/                  # factory-analysis, factory-architect 템플릿
+│   └── templates/                  # factory-analysis, factory-architect, decision-agenda 템플릿
 └── hooks/                          # Claude Code 전용 (세션 시작 시 아티팩트 스캔)
 ```
 
@@ -81,15 +81,15 @@ research → prd → analysis → architect → ui-design → tdd → develop �
 
 | 스킬 | 산출물 |
 |------|--------|
-| factory-research | `factory/research/research.md`, `factory/research/topic-*.md` |
-| factory-prd | `factory/prd/prd.md` |
-| factory-analysis | `factory/analysis/analysis.md` |
-| factory-architect | `factory/architect/architect.md`, `factory/architect/research.md` |
-| factory-ui-design | `factory/ui-design/ui-design.md` |
-| factory-tdd | `factory/tdd/` (테스트 플랜, 사이클 기록) |
-| factory-develop | `factory/develop/` (구현 노트) |
-| factory-e2e | `factory/e2e/` (E2E 리포트) |
-| factory-code-review | `factory/code-review/code-review.md` |
+| factory-research | `factory/research/research.md`, `factory/research/topic-*.md`, `decisions.md` |
+| factory-prd | `factory/prd/prd.md`, `decisions.md` |
+| factory-analysis | `factory/analysis/analysis.md`, `decisions.md` |
+| factory-architect | `factory/architect/architect.md`, `factory/architect/research.md`, `decisions.md` |
+| factory-ui-design | `factory/ui-design/ui-design.md`, `decisions.md` |
+| factory-tdd | `factory/tdd/` (테스트 플랜, 사이클 기록, `decisions.md`) |
+| factory-develop | `factory/develop/` (구현 노트, `decisions.md`) |
+| factory-e2e | `factory/e2e/` (E2E 리포트, `decisions.md`) |
+| factory-code-review | `factory/code-review/code-review.md`, `decisions.md` |
 
 ## 차용 패턴
 
