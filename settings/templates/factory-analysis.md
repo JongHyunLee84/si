@@ -60,7 +60,7 @@
 - Maintainability: High / Medium / Low
 - Trade-off:
 
-### Decision: Option [_]
+### Decision: [사용자 결정 — factory/analysis/decisions.md A-D-001 참조]
 - Rationale (2-3 sentences):
 
 ## 5. Escalation Checklist

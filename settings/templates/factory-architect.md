@@ -126,5 +126,5 @@ These components are explicitly NOT affected:
 | Maintainability | | | |
 | Risk | | | |
 
-- **Decision**: Option [_]
+- **Decision**: [사용자 결정 — factory/architect/decisions.md AR-D-003 참조]
 - **Rationale**: [2-3 sentences]
